@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-   root "products#index"
+  ActiveAdmin.routes(self)
+  root 'products#index'
+  resources :products, only: %i[index new create show]
 end

@@ -1,0 +1,4 @@
+<% @products.each do |product| %>
+  <p>Title: <%= product.title %> </p>
+  <p>Manager: <%= product.user&.name %></p>
+<% end %>
