@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
+    logger.debug 'The article was saved and now the user is going to be redirected...'
   end
 
   def show
@@ -11,5 +12,7 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
-  def create; end
+  def destroy
+    Product.find(params[:id]).destroy
+  end
 end

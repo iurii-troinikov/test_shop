@@ -1,3 +1,4 @@
 <%= @product.description %>
 
 <%= link_to 'Root', root_path, class: 'btn btn-success' %>
+<%= link_to 'Destroy', product_path(@product), data: { 'turbo-method': :delete } %>
