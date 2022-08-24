@@ -1,0 +1,17 @@
+<% @items.includes(:product).each do |item| %>
+  <div class="container">
+    <p>
+      Title: <%= item.product.title %>
+      Price: <%= item.product.price %>
+      Quantity: <%= item.quantity %>
+      <%= link_to '+',
+                  product_order_item_path(product_id: item.product.id, id: item.id, method: :increment),
+                  data: { "turbo-method": :put }, class: 'btn btn-outline-success'
+      %>
+      <%= link_to '-',
+                  product_order_item_path(product_id: item.product.id, id: item.id, method: :decrement),
+                  data: { "turbo-method": :put }, class: 'btn btn-outline-success', disabled: item.quantity == 1
+      %>
+    </p>
+  </div>
+<% end %>
