@@ -1,7 +1,8 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'products#index'
-  resources :products, only: %i[index new create show]
+  resources :products do
+    resources :order_items, only: %i[create update destroy]
+  end
+  resources :orders
 end
