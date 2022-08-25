@@ -6,6 +6,12 @@ ruby "3.1.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
+gem 'bootstrap', '~> 5.1.3'
+
+gem 'activeadmin'
+# Devise is a flexible authentication solution for Rails
+gem 'devise'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-   root "products#index"
+  devise_for :users
+  ActiveAdmin.routes(self)
+  root 'products#index'
+  resources :products do
+    resources :order_items, only: %i[create update destroy]
+  end
+  resources :orders
 end
