@@ -13,6 +13,8 @@ gem 'activeadmin'
 gem 'devise'
 # Pagination
 gem 'pagy', '~> 0.8.1'
+# File Validator
+gem 'file_validators'
 
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
