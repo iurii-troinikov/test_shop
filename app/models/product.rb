@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Product < ApplicationRecord
   belongs_to :user
 
@@ -5,5 +7,5 @@ class Product < ApplicationRecord
   has_many :product_categories
   has_many :categories, through: :product_categories
 
-  validates :title, presence: true
+  validates :title, :description, presence: true
 end
