@@ -11,6 +11,9 @@ gem 'bootstrap', '~> 5.1.3'
 gem 'activeadmin'
 # Devise is a flexible authentication solution for Rails
 gem 'devise'
+# Pagination
+gem 'pagy', '~> 0.8.1'
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

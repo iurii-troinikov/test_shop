@@ -4,8 +4,8 @@
     <div class="col-10">
       <div class="row">
         <% @products.includes(:user).each do |product| %>
-          <div class="col-3 mt-5">
-            <p>Title: <%= product.title %></p>
+          <div class="col-4 mt-5">
+            <p>Title: <%= product.title.truncate(10) %></p>
             <p>Manager: <%= product.user&.name %></p>
 
             <%= link_to 'Delete', product_path(product), class: 'btn btn-outline-danger', data: { "turbo-method": :delete } %>
@@ -20,4 +20,6 @@
       <% end %>
     </div>
   </div>
+
+  <%== pagy_nav(@pagy) %>
 </div>
