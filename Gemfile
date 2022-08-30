@@ -17,7 +17,10 @@ gem 'pagy', '~> 0.8.1'
 gem 'file_validators'
 #Preview email in the default browser instead of sending it.
 gem "letter_opener", group: :development
-
+gem 'annotate'
+gem 'letter_opener_web'
+gem "better_errors"
+gem "binding_of_caller"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
