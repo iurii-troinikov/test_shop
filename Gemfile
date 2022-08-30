@@ -15,6 +15,8 @@ gem 'devise'
 gem 'pagy', '~> 0.8.1'
 # File Validator
 gem 'file_validators'
+#Preview email in the default browser instead of sending it.
+gem "letter_opener", group: :development
 
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
