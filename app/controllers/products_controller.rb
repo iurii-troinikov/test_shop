@@ -25,10 +25,16 @@ class ProductsController < ApplicationController
     Product.find(params[:id]).destroy
   end
 
+  def fetch_products
+    ProductJob.set(wait: 10.seconds).perform_later
+
+    redirect_to root_path, notice: 'Products was successfully created.'
+  end
+
   private
 
   def product_params
-    params.require(:product).permit(:title, :description, images: [])
+    params.require(:product).permit(:title, :description, :price, images: [])
   end
 
   def set_product
