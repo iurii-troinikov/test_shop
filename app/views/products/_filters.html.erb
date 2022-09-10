@@ -1,0 +1,23 @@
+<%= form_tag products_path, method: :get do %>
+  <ul class="category">
+    <% @categories.each do |category| %>
+      <li>
+        <%= check_box_tag "category_ids[]", category.id, !!params[:category_ids]&.include?(category.id.to_s), id: "cb#{category.id}", remote: true %>
+
+        <label class="text-dark" for="cb<%= category.id %>"><%= category.title %></label>
+
+        <b class="text-dark"><%= category.products.size %></b>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= hidden_field_tag :price, params[:price] if params[:price] %>
+  <div class="price">
+    <p><b>Price:</b></p>
+    <%= text_field_tag :min_price, nil, class: 'form-control', placeholder: 'Min', value: params[:min_price] %>
+    <br>
+    <%= text_field_tag :max_price, nil, class: 'form-control', placeholder: 'Max', value: params[:max_price] %>
+    <hr>
+    <%= submit_tag 'Find', class: 'btn btn-success' %>
+  </div>
+<% end %>

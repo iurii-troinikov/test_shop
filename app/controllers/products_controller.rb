@@ -2,7 +2,15 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update]
 
   def index
-    @pagy, @products = pagy(Product.all)
+    products = Product.all
+    products = products.order(price: params[:price]) if params[:price].present?
+    products = products.where('price <= ?', params[:max_price]) if params[:max_price].present?
+    products = products.where('price >= ?', params[:min_price]) if params[:min_price].present?
+    if params[:category_ids].present?
+      products = products.joins(:categories).where(categories: { id: params[:category_ids] })
+    end
+    @categories = Category.includes(:products)
+    @pagy, @products = pagy(products)
   end
 
   def show; end
@@ -26,7 +34,7 @@ class ProductsController < ApplicationController
   end
 
   def fetch_products
-    ProductJob.set(wait: 10.seconds).perform_later
+    ProductJob.set(wait: 10.seconds).perform_now
 
     redirect_to root_path, notice: 'Products was successfully created.'
   end

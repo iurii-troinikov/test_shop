@@ -1,25 +1,13 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-10">
-      <div class="row">
-        <% @products.includes(:user).each do |product| %>
-          <div class="col-4 mt-5">
-            <p>Title: <%= product.title.truncate(10) %></p>
-            <p>Manager: <%= product.user&.name %></p>
-
-            <%= link_to 'Delete', product_path(product), class: 'btn btn-outline-danger', data: { "turbo-method": :delete } %>
-            <%= link_to 'Add to Cart', product_order_items_path(product), data: { "turbo-method": :post }, class: 'btn btn-outline-success' %>
-          </div>
-        <% end %>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 navbar-light bg-light">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <%= render 'filters' %>
       </div>
     </div>
-    <div class="col-2 mt-5 text-end">
-      <%= link_to order_path(current_order) do %>
-        <i class="fa-solid fa-cart-arrow-down fa-2x"></i>
-      <% end %>
+    <div class="col py-3">
+      <%= render 'sorts' %>
+      <%= render 'products' %>
     </div>
   </div>
-
-  <%== pagy_nav(@pagy) %>
 </div>
