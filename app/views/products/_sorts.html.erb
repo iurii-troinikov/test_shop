@@ -1,4 +1,0 @@
-<div class="row">
-  <%= link_to 'Cheaper', products_path(price: :asc, min_price: params[:min_price], max_price: params[:max_price]), class: 'col-1' %>
-  <%= link_to 'More expensive', products_path(price: :desc, min_price: params[:min_price], max_price: params[:max_price]), class: 'col text-start' %>
-</div>

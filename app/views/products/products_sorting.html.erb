@@ -1,0 +1,4 @@
+<div class="container">
+  <%= link_to 'First cheaper', products_path(price: :asc) if params[:price].nil? || params[:price] == 'desc' %>
+  <%= link_to 'First more Expensive', products_path(price: :desc) if params[:price] == 'asc' %>
+</div>

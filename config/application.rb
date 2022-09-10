@@ -11,6 +11,7 @@ module TestShop
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.active_storage.variant_processor = :mini_magick
+    config.assets.precompile += %w[admin/active_admin.js admin/active_admin.css.scss]
 
     # Configuration for the application, engines, and railties goes here.
     #

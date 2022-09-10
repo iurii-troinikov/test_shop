@@ -2,16 +2,15 @@
   <ul class="category">
     <% @categories.each do |category| %>
       <li>
-        <%= check_box_tag "category_ids[]", category.id, !!params[:category_ids]&.include?(category.id.to_s), id: "cb#{category.id}", remote: true %>
+        <%= check_box_tag "categories[]", category.id, params[:categories] ? params[:categories].include?(category.id.to_s) : false, id: "cb#{category.id}", remote: true %>
 
         <label class="text-dark" for="cb<%= category.id %>"><%= category.title %></label>
 
-        <b class="text-dark"><%= category.products.size %></b>
+        <b class="text-dark"><%= category.products.count %></b>
       </li>
     <% end %>
   </ul>
 
-  <%= hidden_field_tag :price, params[:price] if params[:price] %>
   <div class="price">
     <p><b>Price:</b></p>
     <%= text_field_tag :min_price, nil, class: 'form-control', placeholder: 'Min', value: params[:min_price] %>

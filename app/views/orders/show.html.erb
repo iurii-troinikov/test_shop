@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="row p-3">
+  <div class="row">
     <% @items.includes(:product).each do |item| %>
-      <div class="col-3">
+      <div class="col-4">
         <p>Title: <%= item.product.title %></p>
         <p>Price: <%= item.product.price %></p>
         <p>Quantity: <%= item.quantity %></p>
@@ -18,5 +18,7 @@
       </div>
     <% end %>
   </div>
-  <%= link_to 'Complete Order', checkout_orders_path, class: 'btn btn-outline-success' %>
+  <% if current_order.order_items.any? %>
+    <%= link_to 'Complete Order', edit_order_path(current_order), class: 'btn btn-outline-success mt-2 w-25 ms-auto me-auto' %>
+  <% end %>
 </div>
