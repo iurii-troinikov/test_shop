@@ -22,6 +22,9 @@ gem 'letter_opener_web'
 gem "better_errors"
 gem "binding_of_caller"
 
+# Patterns
+gem "rails-patterns", "0.8.0"
+
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
