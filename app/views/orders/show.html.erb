@@ -1,17 +1,22 @@
-<% @items.includes(:product).each do |item| %>
-  <div class="container">
-    <p>
-      Title: <%= item.product.title %>
-      Price: <%= item.product.price %>
-      Quantity: <%= item.quantity %>
-      <%= link_to '+',
-                  product_order_item_path(product_id: item.product.id, id: item.id, method: :increment),
-                  data: { "turbo-method": :put }, class: 'btn btn-outline-success'
-      %>
-      <%= link_to '-',
-                  product_order_item_path(product_id: item.product.id, id: item.id, method: :decrement),
-                  data: { "turbo-method": :put }, class: 'btn btn-outline-success', disabled: item.quantity == 1
-      %>
-    </p>
+<div class="container">
+  <div class="row p-3">
+    <% @items.includes(:product).each do |item| %>
+      <div class="col-3">
+        <p>Title: <%= item.product.title %></p>
+        <p>Price: <%= item.product.price %></p>
+        <p>Quantity: <%= item.quantity %></p>
+        <p>
+          <%= link_to '+',
+                      product_order_item_path(product_id: item.product.id, id: item.id, method: :increment),
+                      data: { "turbo-method": :put }, class: 'btn btn-outline-success'
+          %>
+          <%= link_to '-',
+                      product_order_item_path(product_id: item.product.id, id: item.id, method: :decrement),
+                      data: { "turbo-method": :put }, class: 'btn btn-outline-success', disabled: item.quantity == 1
+          %>
+        </p>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  <%= link_to 'Complete Order', checkout_orders_path, class: 'btn btn-outline-success' %>
+</div>

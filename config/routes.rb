@@ -10,5 +10,9 @@ Rails.application.routes.draw do
       post 'fetch_products', as: :fetch
     end
   end
-  resources :orders
+  resources :orders do
+    collection do
+      get :checkout
+    end
+  end
 end
