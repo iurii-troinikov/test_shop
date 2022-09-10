@@ -2,14 +2,8 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update]
 
   def index
-    products = Product.all
-    products = products.order(price: params[:price]) if params[:price].present?
-    products = products.where('price <= ?', params[:max_price]) if params[:max_price].present?
-    products = products.where('price >= ?', params[:min_price]) if params[:min_price].present?
-    if params[:category_ids].present?
-      products = products.joins(:categories).where(categories: { id: params[:category_ids] })
-    end
-    @categories = Category.includes(:products)
+    products = SortProductsQuery.call(Product.all, params)
+    @categories = Category.all
     @pagy, @products = pagy(products)
   end
 
