@@ -7,10 +7,14 @@ class OrdersController < ApplicationController
   def edit; end
 
   def update
-    current_order.update(order_params)
-    current_order.status_ordered!
-    flash.alert = 'Order confirmed'
-    redirect_to root_path
+    # current_order.update(order_params)
+    # current_order.status_ordered!
+    result = OrderUpdateService.new(current_order, order_params).call
+    if result.success
+      flash.alert = 'Order confirmed'
+      redirect_to root_path
+    else
+    end
   end
 
   private

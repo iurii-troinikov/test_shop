@@ -1,4 +1,5 @@
 class SortProductsQuery < ApplicationQuery
+
   def initialize(products, params)
     @products = products
     @params = params
