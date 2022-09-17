@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   def edit; end
 
   def update
-    service_result = UpdateOrderService.call(current_order, params[:status], order_params)
+    service_result = OrderUpdateService.call(current_order, params[:status], order_params)
     session.delete(:order_id)
     # TODO: Fix redirect with turbo stream
     redirect_to root_path, alert: service_result.result
