@@ -11,10 +11,18 @@ class OrdersController < ApplicationController
   def edit; end
 
   def update
-    service_result = OrderUpdateService.call(current_order, params[:status], order_params)
+    current_order.update(order_params)
+    current_order.status_ordered!
     session.delete(:order_id)
-    # TODO: Fix redirect with turbo stream
-    redirect_to root_path, alert: service_result.result
+    flash.alert = 'Order confirmed'
+    redirect_to root_path
+  end
+
+  def cancel_order
+    current_order.status_canceled!
+    session.delete(:order_id)
+
+    redirect_to root_path, notice: 'Order canceled'
   end
 
   private
