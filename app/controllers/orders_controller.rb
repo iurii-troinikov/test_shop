@@ -9,8 +9,16 @@ class OrdersController < ApplicationController
   def update
     current_order.update(order_params)
     current_order.status_ordered!
+    session.delete(:order_id)
     flash.alert = 'Order confirmed'
     redirect_to root_path
+  end
+
+  def cancel_order
+    current_order.status_canceled!
+    session.delete(:order_id)
+
+    redirect_to root_path, notice: 'Order canceled'
   end
 
   private

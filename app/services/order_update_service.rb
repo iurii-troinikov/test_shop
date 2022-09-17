@@ -1,4 +1,4 @@
-class OrderUpdateService
+class OrderUpdateService < Patterns::Service
 
   def initialize(order, order_params)
     @order = order
@@ -6,9 +6,14 @@ class OrderUpdateService
   end
 
   def call
-    @order.update(@order_params)
-    @order.status_ordered!
+    if @status == 'canceled'
+      @order.status_canceled!
+      'Order canceled'
+    else
+      @order.update(@order_params)
+      @order.status_ordered!
 
-    OpenStruct.new(success: false) if @order.errors.any?
+      'Order confirmed'
+    end
   end
 end
