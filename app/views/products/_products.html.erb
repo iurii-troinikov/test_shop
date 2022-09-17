@@ -14,11 +14,13 @@
         <% end %>
       </div>
     </div>
-    <div class="col-2 mt-5 text-end">
-      <%= link_to order_path(current_order) do %>
-        <i class="fa-solid fa-cart-arrow-down fa-2x"></i>
-      <% end %>
-    </div>
+    <% if current_order.persisted? %>
+      <div class="col-2 mt-5 text-end">
+        <%= link_to order_path(current_order) do %>
+          <i class="fa-solid fa-cart-arrow-down fa-2x"></i>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <%== pagy_nav(@pagy) %>

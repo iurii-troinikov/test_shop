@@ -2,11 +2,10 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!
   helper_method :current_order
 
   def current_order
-    Order.find_or_create_by(user: current_user, status: Order.statuses[:in_progress])
+    Order.find_or_initialize_by(id: session[:order_id], status: Order.statuses[:in_progress], user: current_user)
   end
 
   def authenticate_admin!
