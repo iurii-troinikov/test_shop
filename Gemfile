@@ -74,6 +74,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   # gem 'rubocop'
   gem 'rubocop-rails', require: false
+  #Testing
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+
 end
 
 group :development do
@@ -93,3 +97,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+  end
