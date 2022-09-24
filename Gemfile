@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -25,7 +27,7 @@ gem 'letter_opener_web'
 # Patterns
 gem 'rails-patterns', '0.8.0'
 
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -77,6 +79,7 @@ group :development, :test do
   # Testing
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
     gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+    gem 'factory_bot_rails'
 
   end
 
@@ -94,7 +97,6 @@ group :development, :test do
   group :test do
     # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
     gem 'capybara'
-    gem 'factory_bot_rails'
     gem 'selenium-webdriver'
     gem 'shoulda-matchers'
     gem 'webdrivers'

@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -12,6 +12,7 @@ module TestShop
     config.load_defaults 7.0
     config.active_storage.variant_processor = :mini_magick
     config.assets.precompile += %w[admin/active_admin.js admin/active_admin.css.scss]
+    config.factory_bot.definition_file_paths = ['factories']
 
     # Configuration for the application, engines, and railties goes here.
     #
