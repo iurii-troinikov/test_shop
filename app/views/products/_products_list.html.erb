@@ -1,0 +1,27 @@
+<div class="container" id="product-list">
+  <div class="row">
+    <div class="col-10">
+      <div class="row">
+        <% @products.includes(:user).each do |product| %>
+          <div class="col-4 mt-5">
+            <p>Title: <%= product.title.truncate(10) %></p>
+            <p>Manager: <%= product.user&.name %></p>
+            <p>Price: <%= product.price %></p>
+
+            <%= link_to 'Delete', product_path(product), class: 'btn btn-outline-danger', data: { "turbo-method": :delete } %>
+            <%= link_to 'Add to Cart', product_order_items_path(product), data: { "turbo-method": :post }, class: 'btn btn-outline-success' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% if current_order.persisted? %>
+      <div class="col-2 mt-5 text-end">
+        <%= link_to order_path(current_order) do %>
+          <i class="fa-solid fa-cart-arrow-down fa-2x"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%== pagy_nav(@pagy) %>
+</div>

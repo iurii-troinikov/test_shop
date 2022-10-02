@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "cart-order-items" do %>
+  <%= render "order_items/order_items", discussion: current_order.order_items %>
+<% end %>

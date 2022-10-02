@@ -1,0 +1,7 @@
+<div class="container">
+  <%= render 'order_items/order_items', order_items: @order_items %>
+  <% if current_order.order_items.any? %>
+    <%= link_to 'Complete Order', edit_order_path(current_order), class: 'btn btn-outline-success mt-2 w-25 ms-auto me-auto' %>
+    <%= link_to 'Cancel Order', cancel_orders_path, data: { "turbo-method": :post }, class: 'btn btn-outline-danger mt-2 w-25 ms-auto me-auto' %>
+  <% end %>
+</div>
