@@ -24,6 +24,9 @@ gem 'binding_of_caller'
 gem 'letter_opener', group: :development
 gem 'letter_opener_web'
 
+# Restrictions
+gem 'pundit'
+
 # Patterns
 gem 'rails-patterns', '0.8.0'
 
