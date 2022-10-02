@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   belongs_to :user
 
   has_many :comments, as: :commentable
-  has_many :product_categories
+  has_many :product_categories, dependent: :destroy
   has_many :categories, through: :product_categories
 
   validates :title, presence: true
@@ -23,7 +23,7 @@ class Product < ApplicationRecord
     return if new_record?
 
     User.all.each do |user|
-      ProductMailer.with(product: self, user:).price_is_changed.deliver_now
+      ProductMailer.with(product: self, user: user).price_is_changed.deliver_now
     end
   end
 end
