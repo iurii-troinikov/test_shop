@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
+  include Pundit
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_order
@@ -13,8 +16,13 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless current_user.role_admin?
   end
 
-  protected
+  private
+  def user_not_authorized
+    flash[:error] = "Not authorized"
+    redirect_to root_path
+  end
 
+  protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end

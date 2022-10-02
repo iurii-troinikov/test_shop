@@ -4,7 +4,11 @@
       <div class="row">
         <% @products.includes(:user).each do |product| %>
           <div class="col-4 mt-5">
-            <p>Title: <%= product.title.truncate(10) %></p>
+            <p>
+              <%= link_to product_path(product) do %>
+              Title: <%= product.title.truncate(10) %>
+            <% end %>
+            </p>
             <p>Manager: <%= product.user&.name %></p>
             <p>Price: <%= product.price %></p>
 

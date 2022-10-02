@@ -7,7 +7,9 @@ class ProductsController < ApplicationController
     @pagy, @products = pagy(products)
   end
 
-  def show; end
+  def show
+    authorize @product
+  end
 
   def new
     @product = Product.new
@@ -28,9 +30,10 @@ class ProductsController < ApplicationController
   end
 
   def fetch_products
+    authorize Product
     ProductJob.set(wait: 10.seconds).perform_now
 
-    redirect_to root_path, notice: 'Products was successfully created.'
+    redirect_to root_path, notice: "Products was successfully created."
   end
 
   private
