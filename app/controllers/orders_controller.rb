@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
-  def index
-    @orders = current_user.orders
-  end
-
   def show
-    order_items = current_order.order_items.includes(:product)
-    @items = ItemsWithProductsQuery.call(order_items, order_id: current_order.id)
+    order_items = current_order.order_items.includes(:product).order(:created_at)
+    @order_items = ItemsWithProductsQuery.call(order_items, order_id: current_order.id)
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html
+    end
   end
 
   def edit; end

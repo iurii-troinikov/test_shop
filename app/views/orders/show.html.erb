@@ -1,23 +1,5 @@
 <div class="container">
-  <div class="row">
-    <% @items.each do |item| %>
-      <div class="col-4">
-        <p>Title: <%= item.product_title %></p>
-        <p>Price: <%= item.product_price %></p>
-        <p>Quantity: <%= item.quantity %></p>
-        <p>
-          <%= link_to '+',
-                      product_order_item_path(product_id: item.product_id, id: item.id, method: :increment),
-                      data: { "turbo-method": :put }, class: 'btn btn-outline-success'
-          %>
-          <%= link_to '-',
-                      product_order_item_path(product_id: item.product_id, id: item.id, method: :decrement),
-                      data: { "turbo-method": :put }, class: 'btn btn-outline-success', disabled: item.quantity == 1
-          %>
-        </p>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'order_items/order_items', order_items: @order_items %>
   <% if current_order.order_items.any? %>
     <%= link_to 'Complete Order', edit_order_path(current_order), class: 'btn btn-outline-success mt-2 w-25 ms-auto me-auto' %>
     <%= link_to 'Cancel Order', cancel_orders_path, data: { "turbo-method": :post }, class: 'btn btn-outline-danger mt-2 w-25 ms-auto me-auto' %>

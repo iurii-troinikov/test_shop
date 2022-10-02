@@ -11,10 +11,7 @@ class OrderItemsController < ApplicationController
       session[:order_id] = @order_item.order_id unless session[:order_id]
     end
 
-    flash[:notice] = "#{@order_item.product.title} added to cart."
-    respond_to do |format|
-      format.turbo_stream
-    end
+    redirect_to root_path, notice: "#{@order_item.product.title} added to cart."
   end
 
   def update

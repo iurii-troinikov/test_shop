@@ -2,9 +2,9 @@ class OrderItem < ApplicationRecord
   belongs_to :product
   belongs_to :order
 
-  validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+  validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than: 100 }
 
   def sub_price
-    quantity * product.price.to_i
+    quantity * product.price
   end
 end

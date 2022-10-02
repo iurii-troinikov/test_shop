@@ -1,0 +1,25 @@
+<div id="cart-order-items">
+  <div class="row">
+    <% @order_items.each do |item| %>
+      <div class="col-4">
+        <p>Title: <%= item.product_title %></p>
+        <p>Price: <%= item.product_price %></p>
+        <p>Quantity: <%= item.quantity %></p>
+        <p>
+          <%= link_to '+',
+                      product_order_item_path(product_id: item.product_id, id: item.id, method: :increment),
+                      data: { "turbo-method": :put }, class: 'btn btn-outline-success'
+          %>
+          <%= link_to '-',
+                      product_order_item_path(product_id: item.product_id, id: item.id, method: :decrement),
+                      data: { "turbo-method": :put }, class: 'btn btn-outline-success', disabled: item.quantity == 1
+          %>
+          <%= link_to 'Remove From Cart',
+                      product_order_item_path(product_id: item.product_id, id: item.id),
+                      data: { "turbo-method": :delete }, class: 'btn btn-outline-success'
+          %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
